@@ -3,7 +3,9 @@ package helpers.api.cas;
 import com.sismics.sapparot.function.CheckedConsumer;
 import com.sismics.sapparot.function.CheckedFunction;
 import com.sismics.sapparot.okhttp.OkHttpHelper;
+import helpers.api.cas.mock.MockHealthCheckService;
 import helpers.api.cas.mock.MockValidationService;
+import helpers.api.cas.service.HealthCheckService;
 import helpers.api.cas.service.ValidationService;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,6 +19,8 @@ public class Cas {
     private static Cas cas;
 
     private OkHttpClient client;
+
+    private HealthCheckService healthCheckService;
 
     private ValidationService validationService;
 
@@ -35,10 +39,20 @@ public class Cas {
     public Cas() {
         client = createClient();
         if (isMock()) {
+            healthCheckService = MockHealthCheckService.create();
             validationService = MockValidationService.create();
         } else {
+            healthCheckService = new HealthCheckService(this);
             validationService = new ValidationService(this);
         }
+    }
+
+    public OkHttpClient getClient() {
+        return client;
+    }
+
+    public HealthCheckService getHealthCheckService() {
+        return healthCheckService;
     }
 
     public ValidationService getValidationService() {
@@ -57,8 +71,11 @@ public class Cas {
         return Boolean.parseBoolean(Play.configuration.getProperty("cas.mock", "false"));
     }
 
-    public <T> T execute(Request request, CheckedFunction<Response, T> onSuccess, CheckedConsumer<Response> onFailure) {
+    public <T> T execute(OkHttpClient client, Request request, CheckedFunction<Response, T> onSuccess, CheckedConsumer<Response> onFailure) {
         return OkHttpHelper.execute(client, request, onSuccess, onFailure);
     }
 
+    public <T> T execute(Request request, CheckedFunction<Response, T> onSuccess, CheckedConsumer<Response> onFailure) {
+        return execute(this.client, request, onSuccess, onFailure);
+    }
 }

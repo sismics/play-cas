@@ -21,6 +21,12 @@ public class ValidationService {
         this.cas = cas;
     }
 
+    /**
+     * Validate a CAS ticket.
+     *
+     * @param ticket The ticket to validate
+     * @return The user name
+     */
     public String validate(String ticket) {
         Request request = new Request.Builder()
                 .url(HttpUrl.parse(Cas.getCasUrl() + "/serviceValidate?service")
@@ -37,7 +43,7 @@ public class ValidationService {
                         Node node1 = XPath.selectNodes("//*", node0).get(1);
                         return node1.getTextContent().trim();
                     } else {
-                        Logger.error("CAS validation error: " + node0.getTextContent());
+                        Logger.error("CAS validation error" + node0.getTextContent());
                         return null;
                     }
                 },
