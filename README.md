@@ -10,12 +10,12 @@ This plugin adds [CAS](https://en.wikipedia.org/wiki/Central_Authentication_Serv
 
 ```
 require:
-    - cas -> cas 1.0.0
+    - cas -> cas 1.2.0
 
 repositories:
-    - sismics:
-        type:       http
-        artifact:   "http://release.sismics.com/repo/play/[module]-[revision].zip"
+    - sismicsNexusRaw:
+        type: http
+        artifact: "https://nexus.sismics.com/repository/sismics/[module]-[revision].zip"
         contains:
             - cas -> *
 
