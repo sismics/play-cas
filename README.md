@@ -1,3 +1,6 @@
+[![GitHub release](https://img.shields.io/github/release/sismics/play-cas.svg?style=flat-square)](https://github.com/sismics/play-cas/releases/latest)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # play-cas plugin
 
 This plugin adds [CAS](https://en.wikipedia.org/wiki/Central_Authentication_Service) support to Play! Framework 1 applications.
@@ -10,7 +13,7 @@ This plugin adds [CAS](https://en.wikipedia.org/wiki/Central_Authentication_Serv
 
 ```
 require:
-    - cas -> cas 1.2.0
+    - cas -> cas 1.3.0
 
 repositories:
     - sismicsNexusRaw:
