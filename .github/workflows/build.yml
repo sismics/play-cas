@@ -15,9 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: LizardByte/setup-python-action@master
         with:
-          python-version: '2.x'
+          python-version: '2.7'
       - name: Build
         env:
           PLAY_VERSION: 1.5.3
