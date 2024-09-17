@@ -1,4 +1,6 @@
 ## Change Log
+### Version 1.4.0 (2024-09-17)
+- Fix validation parsing
 ### Version 1.3.0 (2020-12-28)
 - Deploy using Github Action
 ### Version 1.2.0 (2019-04-15)

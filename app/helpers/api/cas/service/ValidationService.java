@@ -40,7 +40,7 @@ public class ValidationService {
                     Document doc = XML.getDocument(r.body().byteStream());
                     Node node0 = XPath.selectNodes("//*", doc).get(1);
                     if ("cas:authenticationSuccess".equals(node0.getNodeName())) {
-                        Node node1 = XPath.selectNodes("//*", node0).get(1);
+                        Node node1 = XPath.selectNodes("//*[local-name() = 'cas:user']", node0).get(0);
                         return node1.getTextContent().trim();
                     } else {
                         Logger.error("CAS validation error" + node0.getTextContent());

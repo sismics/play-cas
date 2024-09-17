@@ -13,7 +13,7 @@ This plugin adds [CAS](https://en.wikipedia.org/wiki/Central_Authentication_Serv
 
 ```
 require:
-    - cas -> cas 1.3.0
+    - cas -> cas 1.4.0
 
 repositories:
     - sismicsNexusRaw:
